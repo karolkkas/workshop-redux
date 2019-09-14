@@ -1,18 +1,17 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import {HomePage, GalleryPage} from './pages';
 import {Menu} from './pages/shared'
+import routes from './routes';
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-        <Menu />
-        <Switch>
-            <Route path="/" component={HomePage} exact/>
-            <Route path="/gallery" component={GalleryPage}/>
-        </Switch>
+      <Menu/>
+      <Switch>
+        {routes.map(({path, component, exact}) => <Route key={path} path={path} component={component} exact={exact}/>)}
+      </Switch>
     </div>
   );
 }

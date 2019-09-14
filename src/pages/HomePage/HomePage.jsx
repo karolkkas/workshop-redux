@@ -1,13 +1,22 @@
 import React from 'react';
-import {Counter} from './../../components'
+import {useSelector} from "react-redux";
 
-function HomePage () {
-    return (
-        <div>
-            <h1>Counter</h1>
-            <Counter />
-        </div>
-    );
+import {getDoneTodos} from "../../store/entities/todos/selectors";
+
+function HomePage() {
+  const todos = useSelector(state => getDoneTodos(state));
+  return (
+    <div>
+      <h2>Todos</h2>
+      <div>
+        {todos.map(todo => (
+          <div key={todo.id}>
+            <span>{todo.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default HomePage;
